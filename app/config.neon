@@ -1,0 +1,23 @@
+php:
+	date.timezone: Europe/Prague
+
+application:
+	scanDirs: no
+	mapping:
+		Tim: ['App\Model', '*', '*Presenter']
+
+services:
+	# Routing
+	routing.router:
+		class: Nette\Application\IRouter
+		factory: App\Model\RouterFactory::createRouter
+
+	# Templates
+	latte.templateFactory: App\Model\TemplateFactory
+	template.renderControl:
+		class: App\Model\ControlRenderer
+		setup:
+			- addMapping(contact, App\Components\Contact\ContactControl)
+
+	# Components
+	- App\Components\Contact\ContactControl
