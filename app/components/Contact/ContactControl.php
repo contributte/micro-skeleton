@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace App\Components\Contact;
 
@@ -8,10 +8,7 @@ use Nette\Application\UI\Control;
 final class ContactControl extends Control
 {
 
-	/**
-	 * @return Form
-	 */
-	protected function createComponentForm()
+	protected function createComponentForm(): Form
 	{
 		$form = new Form();
 		$form->setMethod('POST');

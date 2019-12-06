@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace App\Model;
 
@@ -16,29 +16,17 @@ final class ControlRenderer extends Control
 	/** @var array */
 	private $mapping = [];
 
-	/**
-	 * @param Container $context
-	 */
 	public function __construct(Container $context)
 	{
-		parent::__construct();
 		$this->context = $context;
 	}
 
-	/**
-	 * @param string $name
-	 * @param string $class
-	 */
-	public function addMapping($name, $class)
+	public function addMapping(string $name, string $class): void
 	{
 		$this->mapping[$name] = $class;
 	}
 
-	/**
-	 * @param string $name
-	 * @return IComponent
-	 */
-	protected function createComponent($name)
+	protected function createComponent(string $name): ?IComponent
 	{
 		if (isset($this->mapping[$name])) {
 			return $this->context->getByType($this->mapping[$name]);
@@ -48,12 +36,7 @@ final class ControlRenderer extends Control
 		}
 	}
 
-	/**
-	 * @param string $destination
-	 * @param array $args
-	 * @return string
-	 */
-	public function link($destination, $args = [])
+	public function link(string $destination, $args = []): string
 	{
 		return $this->context->getByType(LinkGenerator::class)->link($destination, $args);
 	}

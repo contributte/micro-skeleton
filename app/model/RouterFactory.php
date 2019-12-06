@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace App\Model;
 
@@ -11,18 +11,12 @@ class RouterFactory
 	/** @var Container */
 	private $context;
 
-	/**
-	 * @param Container $context
-	 */
 	public function __construct(Container $context)
 	{
 		$this->context = $context;
 	}
 
-	/**
-	 * @return RouteList
-	 */
-	public static function createRouter()
+	public static function createRouter(): RouteList
 	{
 		$router = new RouteList();
 

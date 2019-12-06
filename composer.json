@@ -1,18 +1,27 @@
 {
-  "name": "tlapnet/timy-project",
-  "description": "Tlapnet Tiny Web Project",
+  "name": "planette/timy-project",
+  "description": "Timy is experimental skeleton for really micro Nette projects.",
+  "keywords": [
+    "php",
+    "nette",
+    "planette",
+    "contributte",
+    "sandbox",
+    "project",
+    "web"
+  ],
   "license": "MIT",
   "type": "project",
   "require": {
-    "php": ">=5.6",
-    "nette/bootstrap": "~2.4.5",
-    "nette/di": "~2.4.10",
-    "nette/application": "~2.4.9",
-    "nette/forms": "~2.4.6",
-    "nette/http": "~2.4.7",
-    "nette/utils": "~2.4.9",
-    "latte/latte": "~2.4.7",
-    "tracy/tracy": "~2.4.11"
+    "php": "^7.2",
+    "contributte/bootstrap": "^0.4.0",
+    "contributte/di": "^0.4.0",
+    "contributte/application": "^0.4.0",
+    "contributte/forms": "^0.4.0",
+    "contributte/http": "^0.3.0",
+    "contributte/utils": "^0.4.1",
+    "contributte/latte": "^0.4.0",
+    "contributte/tracy": "^0.4.1"
   },
   "autoload": {
     "psr-4": {
