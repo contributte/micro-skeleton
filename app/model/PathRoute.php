@@ -6,13 +6,13 @@ use Nette\Application\Routers\Route;
 
 final class PathRoute extends Route
 {
-	public function __construct($mask, callable $callback)
+
+	public function __construct(string $mask, callable $callback)
 	{
 		parent::__construct($mask, [
 			'presenter' => 'Tim:Micro',
 			'callback' => $callback,
 		]);
 	}
-
 
 }

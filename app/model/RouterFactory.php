@@ -3,18 +3,9 @@
 namespace App\Model;
 
 use Nette\Application\Routers\RouteList;
-use Nette\DI\Container;
 
 class RouterFactory
 {
-
-	/** @var Container */
-	private $context;
-
-	public function __construct(Container $context)
-	{
-		$this->context = $context;
-	}
 
 	public static function createRouter(): RouteList
 	{

@@ -23,6 +23,7 @@ use Nette\Http\IResponse as IHttpResponse;
 use Nette\InvalidStateException;
 use Nette\Routing\Router;
 use Nette\Utils\Callback;
+use SplFileInfo;
 
 class MicroPresenter extends Component implements IPresenter
 {
@@ -114,15 +115,15 @@ class MicroPresenter extends Component implements IPresenter
 		if (is_array($response)) {
 			[$templateSource, $templateParams] = $response;
 			$response = $this->createTemplate()->setParameters($templateParams);
-			if (!$templateSource instanceof \SplFileInfo) {
-				$response->getLatte()->setLoader(new StringLoader);
+			if (!$templateSource instanceof SplFileInfo) {
+				$response->getLatte()->setLoader(new StringLoader());
 			}
 			$response->setFile((string) $templateSource);
 		}
 		if ($response instanceof ITemplate) {
 			return new TextResponse($response);
 		} else {
-			return $response ?: new VoidResponse;
+			return $response ?: new VoidResponse();
 		}
 	}
 
@@ -147,7 +148,7 @@ class MicroPresenter extends Component implements IPresenter
 		return new RedirectResponse($url, $httpCode);
 	}
 
-	public function error(string $message = null, int $httpCode = IHttpResponse::S404_NOT_FOUND): void
+	public function error(?string $message = null, int $httpCode = IHttpResponse::S404_NOT_FOUND): void
 	{
 		throw new BadRequestException($message, $httpCode);
 	}

@@ -17,7 +17,7 @@ final class ContactControl extends Control
 
 		$form->addSubmit('send', 'Odeslat');
 
-		$form->onSuccess[] = function (Form $form) {
+		$form->onSuccess[] = function (Form $form): void {
 			bdump($form->getValues());
 		};
 

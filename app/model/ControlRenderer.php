@@ -13,7 +13,7 @@ final class ControlRenderer extends Control
 	/** @var Container */
 	private $context;
 
-	/** @var array */
+	/** @var string[] */
 	private $mapping = [];
 
 	public function __construct(Container $context)
@@ -36,7 +36,10 @@ final class ControlRenderer extends Control
 		}
 	}
 
-	public function link(string $destination, $args = []): string
+	/**
+	 * @param mixed[] $args
+	 */
+	public function link(string $destination, array $args = []): string
 	{
 		return $this->context->getByType(LinkGenerator::class)->link($destination, $args);
 	}

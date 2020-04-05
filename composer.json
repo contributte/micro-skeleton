@@ -1,6 +1,6 @@
 {
   "name": "planette/timy-project",
-  "description": "Timy is experimental skeleton for really micro Nette projects.",
+  "description": "Timy is experimental skeleton for really micro Nette projects by @f3l1x.",
   "keywords": [
     "php",
     "nette",
@@ -23,10 +23,22 @@
     "contributte/latte": "^0.4.0",
     "contributte/tracy": "^0.4.1"
   },
+  "require-dev": {
+    "ninjify/qa": "^0.10.0",
+    "ninjify/nunjuck": "^0.3.0",
+    "contributte/dev": "^0.2.0"
+  },
   "autoload": {
     "psr-4": {
       "App\\Model\\": "app/model",
       "App\\Components\\": "app/components"
+    }
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev",
+  "config": {
+    "platform": {
+      "php": "7.3"
     }
   }
 }
