@@ -8,6 +8,9 @@ cs:
 cfx:
 	vendor/bin/codefixer app
 
+phpstan:
+	echo "OK"
+
 tests:
 	echo "OK"
 
