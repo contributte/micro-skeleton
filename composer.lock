@@ -1850,16 +1850,16 @@
         },
         {
             "name": "ninjify/coding-standard",
-            "version": "v0.11.1",
+            "version": "v0.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ninjify/coding-standard.git",
-                "reference": "d08713c0e7aaf50622f468303499292b42516e1a"
+                "reference": "3c5b41ff1f96b7d8f10407f236f9ffc1e8010df9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ninjify/coding-standard/zipball/d08713c0e7aaf50622f468303499292b42516e1a",
-                "reference": "d08713c0e7aaf50622f468303499292b42516e1a",
+                "url": "https://api.github.com/repos/ninjify/coding-standard/zipball/3c5b41ff1f96b7d8f10407f236f9ffc1e8010df9",
+                "reference": "3c5b41ff1f96b7d8f10407f236f9ffc1e8010df9",
                 "shasum": ""
             },
             "require": {
@@ -1893,7 +1893,7 @@
             ],
             "support": {
                 "issues": "https://github.com/ninjify/coding-standard/issues",
-                "source": "https://github.com/ninjify/coding-standard/tree/v0.11.1"
+                "source": "https://github.com/ninjify/coding-standard/tree/v0.11.2"
             },
             "funding": [
                 {
@@ -1905,7 +1905,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-08T09:06:18+00:00"
+            "time": "2020-12-22T18:40:31+00:00"
         },
         {
             "name": "ninjify/nunjuck",
