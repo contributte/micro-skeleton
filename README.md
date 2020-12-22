@@ -4,19 +4,25 @@
     Timy is experimental skeleton for really micro Nette projects by <a href="https://github.com/f3l1x">@f3l1x</a>.
 </p>
 
+
 <p align=center>
-🕹 <a href="https://f3l1x.io">f3l1x.io</a> | 💻 <a href="https://github.com/f3l1x">f3l1x</a> | 🐦 <a href="https://twitter.com/xf3l1x">@xf3l1x</a>
+  <a href="https://github.com/planette/timy-project/actions"><img src="https://badgen.net/github/checks/planette/timy-project/master?cache=300"></a>
+  <a href="https://packagist.org/packages/planette/timy-project"><img src="https://badgen.net/packagist/php/planette/timy-project"></a>
+  <a href="https://github.com/planette/timy-project"><img src="https://badgen.net/github/license/planette/timy-project"></a>
+  <a href="https://bit.ly/ctteg"><img src="https://badgen.net/badge/support/gitter/cyan"></a>
+  <a href="https://bit.ly/cttfo"><img src="https://badgen.net/badge/support/forum/yellow"></a>
+  <a href="https://contributte.org/partners.html"><img src="https://badgen.net/badge/sponsor/donations/F96854"></a>
 </p>
 
 <p align=center>
-    <code>composer create-project -s dev planette/timy-project acme</code>
+Website 🚀 <a href="https://contributte.org">contributte.org</a> | Contact 👨🏻‍💻 <a href="https://f3l1x.io">f3l1x.io</a> | Twitter 🐦 <a href="https://twitter.com/contributte">@contributte</a>
 </p>
 
 -----
 
 ## Installation
 
-You will need `PHP 7.2+` and [Composer](https://getcomposer.org/).
+You will need `PHP 7.4+` and [Composer](https://getcomposer.org/).
 
 Create project using composer.
 
@@ -46,5 +52,5 @@ This package is currently maintaining by these authors.
 
 -----
 
-Consider to [support](https://contributte.org/partners.html) **planette** development team.
+Consider to [support](https://contributte.org/partners.html) **contributte** development team.
 Also thank you for using this project.
