@@ -91,6 +91,7 @@ class MicroPresenter extends Component implements IPresenter
 		if (!isset($params['callback'])) {
 			throw new InvalidStateException('Parameter callback is missing.');
 		}
+
 		$callback = $params['callback'];
 		$reflection = Callback::toReflection(Callback::check($callback));
 
@@ -101,6 +102,7 @@ class MicroPresenter extends Component implements IPresenter
 				}
 			}
 		}
+
 		$params['presenter'] = $this;
 		try {
 			$params = ComponentReflection::combineArgs($reflection, $params);
@@ -112,14 +114,17 @@ class MicroPresenter extends Component implements IPresenter
 		if (is_string($response)) {
 			$response = [$response, []];
 		}
+
 		if (is_array($response)) {
 			[$templateSource, $templateParams] = $response;
 			$response = $this->createTemplate()->setParameters($templateParams);
 			if (!$templateSource instanceof SplFileInfo) {
 				$response->getLatte()->setLoader(new StringLoader());
 			}
+
 			$response->setFile((string) $templateSource);
 		}
+
 		if ($response instanceof ITemplate) {
 			return new TextResponse($response);
 		} else {
