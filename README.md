@@ -27,7 +27,7 @@ You will need `PHP 7.4+` and [Composer](https://getcomposer.org/).
 Create project using composer.
 
 ```
-composer create-project -s dev planette/timy-project acme
+$ composer create-project -s dev planette/timy-project acme
 ```
 
 ## Startup
