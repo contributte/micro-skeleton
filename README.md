@@ -4,7 +4,6 @@
     Timy is experimental skeleton for really micro Nette projects by <a href="https://github.com/f3l1x">@f3l1x</a>.
 </p>
 
-
 <p align=center>
   <a href="https://github.com/planette/timy-project/actions"><img src="https://badgen.net/github/checks/planette/timy-project/master?cache=300"></a>
   <a href="https://packagist.org/packages/planette/timy-project"><img src="https://badgen.net/packagist/php/planette/timy-project"></a>
@@ -26,7 +25,7 @@ You will need `PHP 7.4+` and [Composer](https://getcomposer.org/).
 
 Create project using composer.
 
-```
+```bash
 composer create-project -s dev planette/timy-project acme
 ```
 
