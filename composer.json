@@ -1,13 +1,13 @@
 {
-  "name": "planette/timy-project",
-  "description": "Timy is experimental skeleton for really micro Nette projects by @f3l1x.",
+  "name": "contributte/micro-skeleton",
+  "description": "Micro project skeleton based on Nette Framework (@nette) and Contributte (@contributte) libraries for really small projects or sites by @f3l1x.",
   "keywords": [
     "php",
     "nette",
-    "planette",
     "contributte",
     "sandbox",
     "project",
+    "skeleton",
     "web"
   ],
   "license": "MIT",
@@ -35,10 +35,5 @@
     }
   },
   "prefer-stable": true,
-  "minimum-stability": "dev",
-  "config": {
-    "platform": {
-      "php": "7.4"
-    }
-  }
+  "minimum-stability": "dev"
 }
