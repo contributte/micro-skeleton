@@ -18,6 +18,14 @@ tests-coverage:
 	echo "OK"
 
 #####################
+# DEPLOY ########## #
+#####################
+
+build:
+	rm -rf var/log var/tmp
+	chmod 0777 var/log var/tmp
+
+#####################
 # LOCAL DEVELOPMENT #
 #####################
 

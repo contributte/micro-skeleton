@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 // Load Nette Framework
 if (@!include __DIR__ . '/../vendor/autoload.php') {
@@ -12,7 +12,7 @@ $configurator = new Nette\Configurator;
 $configurator->enableTracy(__DIR__ . '/../var/log');
 
 // Create Dependency Injection container
-$configurator->setTempDirectory(__DIR__ . '/../var/temp');
+$configurator->setTempDirectory(__DIR__ . '/../var/tmp');
 $configurator->addConfig(__DIR__ . '/../app/config.neon');
 $container = $configurator->createContainer();
 
