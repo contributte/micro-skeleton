@@ -22,7 +22,8 @@ tests-coverage:
 #####################
 
 build:
-	rm -rf var/log var/tmp
+	mkdir -p var/log var/tmp
+	rm -rf var/log/** var/tmp/**
 	chmod 0777 var/log var/tmp
 
 #####################
