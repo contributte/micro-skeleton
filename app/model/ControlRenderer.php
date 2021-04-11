@@ -39,7 +39,7 @@ final class ControlRenderer extends Control
 	/**
 	 * @param mixed[] $args
 	 */
-	public function link(string $destination, array $args = []): string
+	public function link(string $destination, $args = []): string
 	{
 		return $this->context->getByType(LinkGenerator::class)->link($destination, $args);
 	}

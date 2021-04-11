@@ -2,31 +2,31 @@
 
 namespace App\Model;
 
-use InvalidArgumentException;
 use Latte\Loaders\StringLoader;
 use Nette\Application\BadRequestException;
 use Nette\Application\IPresenter;
-use Nette\Application\IResponse;
-use Nette\Application\IRouter;
 use Nette\Application\Request;
+use Nette\Application\Response;
 use Nette\Application\Responses\RedirectResponse;
 use Nette\Application\Responses\TextResponse;
 use Nette\Application\Responses\VoidResponse;
 use Nette\Application\UI\Component;
 use Nette\Application\UI\ComponentReflection;
-use Nette\Application\UI\ITemplate;
-use Nette\Application\UI\ITemplateFactory;
-use Nette\Bridges\ApplicationLatte\Template;
+use Nette\Application\UI\Template;
 use Nette\DI\Container;
 use Nette\Http\IRequest as IHttpRequest;
+use Nette\Http\IResponse;
 use Nette\Http\IResponse as IHttpResponse;
-use Nette\InvalidStateException;
+use Nette\InvalidArgumentException;
 use Nette\Routing\Router;
+use Nette\SmartObject;
 use Nette\Utils\Callback;
 use SplFileInfo;
 
-class MicroPresenter extends Component implements IPresenter
+final class MicroPresenter extends Component implements IPresenter
 {
+
+	use SmartObject;
 
 	/** @var Container */
 	private $context;
@@ -34,7 +34,7 @@ class MicroPresenter extends Component implements IPresenter
 	/** @var IHttpRequest */
 	private $httpRequest;
 
-	/** @var IRouter */
+	/** @var Router */
 	private $router;
 
 	/** @var Request */
@@ -60,9 +60,9 @@ class MicroPresenter extends Component implements IPresenter
 		return $this->request;
 	}
 
-	protected function getTemplateFactory(): ITemplateFactory
+	protected function getTemplateFactory(): TemplateFactory
 	{
-		return $this->getContext()->getByType(ITemplateFactory::class);
+		return $this->getContext()->getByType(TemplateFactory::class);
 	}
 
 	protected function getControlRenderer(): ControlRenderer
@@ -75,35 +75,42 @@ class MicroPresenter extends Component implements IPresenter
 		return $this->controlRenderer;
 	}
 
-	public function run(Request $request): IResponse
+	public function run(Request $request): Response
 	{
 		$this->request = $request;
 
-		if ($this->httpRequest && $this->router && !$this->httpRequest->isAjax() && ($request->isMethod('get') || $request->isMethod('head'))) {
+		if (
+			$this->httpRequest
+			&& $this->router
+			&& !$this->httpRequest->isAjax()
+			&& ($request->isMethod('get') || $request->isMethod('head'))
+		) {
 			$refUrl = $this->httpRequest->getUrl()->withoutUserInfo();
 			$url = $this->router->constructUrl($request->toArray(), $refUrl);
 			if ($url !== null && !$refUrl->isEqual($url)) {
-				return new Responses\RedirectResponse($url, Http\IResponse::S301_MOVED_PERMANENTLY);
+				return new RedirectResponse($url, IResponse::S301_MOVED_PERMANENTLY);
 			}
 		}
 
 		$params = $request->getParameters();
-		if (!isset($params['callback'])) {
-			throw new InvalidStateException('Parameter callback is missing.');
+		$callback = $params['callback'] ?? null;
+
+		if (!is_object($callback) || !is_callable($callback)) {
+			throw new BadRequestException('Parameter callback is not a valid closure.');
 		}
 
-		$callback = $params['callback'];
-		$reflection = Callback::toReflection(Callback::check($callback));
+		$reflection = Callback::toReflection($callback);
 
 		if ($this->context) {
 			foreach ($reflection->getParameters() as $param) {
-				if ($param->getClass()) {
-					$params[$param->getName()] = $this->context->getByType($param->getClass()->getName(), false);
+				if ($param->getType()) {
+					$params[$param->getName()] = $this->context->getByType($param->getType()->getName(), false);
 				}
 			}
 		}
 
 		$params['presenter'] = $this;
+
 		try {
 			$params = ComponentReflection::combineArgs($reflection, $params);
 		} catch (InvalidArgumentException $e) {
@@ -111,6 +118,7 @@ class MicroPresenter extends Component implements IPresenter
 		}
 
 		$response = $callback(...array_values($params));
+
 		if (is_string($response)) {
 			$response = [$response, []];
 		}
@@ -118,6 +126,7 @@ class MicroPresenter extends Component implements IPresenter
 		if (is_array($response)) {
 			[$templateSource, $templateParams] = $response;
 			$response = $this->createTemplate()->setParameters($templateParams);
+
 			if (!$templateSource instanceof SplFileInfo) {
 				$response->getLatte()->setLoader(new StringLoader());
 			}
@@ -125,7 +134,7 @@ class MicroPresenter extends Component implements IPresenter
 			$response->setFile((string) $templateSource);
 		}
 
-		if ($response instanceof ITemplate) {
+		if ($response instanceof Template) {
 			return new TextResponse($response);
 		} else {
 			return $response ?: new VoidResponse();
@@ -153,7 +162,8 @@ class MicroPresenter extends Component implements IPresenter
 		return new RedirectResponse($url, $httpCode);
 	}
 
-	public function error(?string $message = null, int $httpCode = IHttpResponse::S404_NOT_FOUND): void
+
+	public function error(string $message = '', int $httpCode = IHttpResponse::S404_NOT_FOUND): void
 	{
 		throw new BadRequestException($message, $httpCode);
 	}

@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -8,16 +8,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css"/>
 </head>
 <body>
-<div>
-    <div><h1>Micro Skeleton</h1></div>
-    <div>
-        {include #content}
-    </div>
-    <div>
-        <span class="text-muted">
-            &copy; {=date(Y)} Micro Skeleton
-        </span>
+<div class="relative bg-gray-50 overflow-hidden">
+    <div class="relative pt-6 pb-16 sm:pb-24">
+        {include content}
     </div>
 </div>
+
 </body>
 </html>

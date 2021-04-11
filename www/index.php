@@ -2,7 +2,7 @@
 
 // Load Nette Framework
 if (@!include __DIR__ . '/../vendor/autoload.php') {
-	die('Install Nette using `composer update`');
+	die('Install skeleton using `composer install`');
 }
 
 // Configure application
