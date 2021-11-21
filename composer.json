@@ -19,14 +19,14 @@
     "contributte/di": "^0.5.0",
     "contributte/application": "^0.5.0",
     "contributte/forms": "^0.5.0",
-    "contributte/http": "^0.5.0",
+    "contributte/http": "^0.4.0",
     "contributte/utils": "^0.5.0",
     "contributte/latte": "^0.5.0",
     "contributte/tracy": "^0.5.0"
   },
   "require-dev": {
     "ninjify/qa": "^0.12",
-    "ninjify/nunjuck": "^0.4",
+    "ninjify/nunjuck": "^0.3",
     "contributte/dev": "^0.3"
   },
   "autoload": {
