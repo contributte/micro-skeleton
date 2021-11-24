@@ -13,7 +13,7 @@ $configurator->enableTracy(__DIR__ . '/../var/log');
 
 // Create Dependency Injection container
 $configurator->setTempDirectory(__DIR__ . '/../var/tmp');
-$configurator->addConfig(__DIR__ . '/../app/config.neon');
+$configurator->addConfig(__DIR__ . '/../config/config.neon');
 $container = $configurator->createContainer();
 
 // Run the application!
