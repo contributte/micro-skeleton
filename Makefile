@@ -1,11 +1,33 @@
-.PHONY: qa dev cs cfx tests build
+############################################################
+# PROJECT ##################################################
+############################################################
+.PHONY: project install setup clean
 
-qa: cs
+project: install setup
+
+install:
+	composer install
+	npm install
+
+setup:
+	mkdir -p var/tmp var/log
+	chmod +0777 var/tmp var/log
+
+clean:
+	find var/tmp -mindepth 1 ! -name '.gitignore' -type f -or -type d -exec rm -rf {} +
+	find var/log -mindepth 1 ! -name '.gitignore' -type f -or -type d -exec rm -rf {} +
+
+############################################################
+# DEVELOPMENT ##############################################
+############################################################
+.PHONY: qa dev cs csf phpstan tests coverage dev build
+
+qa: cs phpstan
 
 cs:
 	vendor/bin/codesniffer app
 
-cfx:
+csf:
 	vendor/bin/codefixer app
 
 phpstan:
@@ -14,21 +36,18 @@ phpstan:
 tests:
 	echo "OK"
 
-tests-coverage:
+coverage:
 	echo "OK"
-
-#####################
-# DEPLOY ########## #
-#####################
-
-build:
-	mkdir -p var/log var/tmp
-	rm -rf var/log/** var/tmp/**
-	chmod 0777 var/log var/tmp
-
-#####################
-# LOCAL DEVELOPMENT #
-#####################
 
 dev:
 	NETTE_DEBUG=1 NETTE_ENV=dev php -S 0.0.0.0:8000 -t www
+
+build:
+	echo "BUILD OK"
+
+############################################################
+# DEPLOYMENT ###############################################
+############################################################
+.PHONY: deploy
+
+deploy: clean project build
