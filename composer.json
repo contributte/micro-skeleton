@@ -13,21 +13,20 @@
   "license": "MIT",
   "type": "project",
   "require": {
-    "php": ">=8.0",
+    "php": ">=8.4",
 
-    "contributte/bootstrap": "^0.6.0",
-    "contributte/di": "^0.5.0",
-    "contributte/application": "^0.5.0",
+    "contributte/bootstrap": "^0.7.0",
+    "contributte/di": "^0.6.0",
+    "contributte/application": "^0.6.0",
     "contributte/forms": "^0.5.0",
-    "contributte/http": "^0.4.0",
-    "contributte/utils": "^0.6.0",
-    "contributte/latte": "^0.6.0",
-    "contributte/tracy": "^0.5.0"
+    "contributte/http": "^0.5.0",
+    "contributte/utils": "^0.7.0",
+    "contributte/latte": "^0.7.0",
+    "contributte/tracy": "^0.7.0"
   },
   "require-dev": {
-    "ninjify/qa": "^0.13",
-    "ninjify/nunjuck": "^0.4",
-    "contributte/dev": "^0.3"
+    "contributte/qa": "^0.4",
+    "contributte/dev": "^0.6"
   },
   "autoload": {
     "psr-4": {

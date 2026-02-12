@@ -10,11 +10,10 @@ use Nette\DI\Container;
 final class ControlRenderer extends Control
 {
 
-	/** @var Container */
-	private $context;
+	private Container $context;
 
 	/** @var string[] */
-	private $mapping = [];
+	private array $mapping = [];
 
 	public function __construct(Container $context)
 	{
@@ -26,22 +25,17 @@ final class ControlRenderer extends Control
 		$this->mapping[$name] = $class;
 	}
 
-	protected function createComponent(string $name): ?IComponent
-	{
-		if (isset($this->mapping[$name])) {
-			return $this->context->getByType($this->mapping[$name]);
-		} else {
-			return parent::createComponent($name);
-
-		}
-	}
-
 	/**
 	 * @param mixed[] $args
 	 */
-	public function link(string $destination, $args = []): string
+	public function link(string $destination, array $args = []): string
 	{
 		return $this->context->getByType(LinkGenerator::class)->link($destination, $args);
+	}
+
+	protected function createComponent(string $name): ?IComponent
+	{
+		return isset($this->mapping[$name]) ? $this->context->getByType($this->mapping[$name]) : parent::createComponent($name);
 	}
 
 }

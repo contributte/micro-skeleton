@@ -2,15 +2,15 @@
 <ruleset name="Contributte">
 
     <!-- Extending rulesets -->
-    <rule ref="./vendor/ninjify/coding-standard/ruleset.xml"/>
+    <rule ref="./vendor/contributte/qa/ruleset-8.4.xml"/>
 
     <!-- Specific rules -->
     <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
         <properties>
-            <property name="rootNamespaces" type="array" value="
-                app/components=>App\Components,
-                app/model=>App\Model,
-            "/>
+            <property name="rootNamespaces" type="array">
+                <element key="app/components" value="App\Components"/>
+                <element key="app/model" value="App\Model"/>
+            </property>
         </properties>
     </rule>
 
