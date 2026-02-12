@@ -28,20 +28,15 @@ final class MicroPresenter extends Component implements IPresenter
 
 	use SmartObject;
 
-	/** @var Container */
-	private $context;
+	private Container $context;
 
-	/** @var IHttpRequest */
-	private $httpRequest;
+	private IHttpRequest $httpRequest;
 
-	/** @var Router */
-	private $router;
+	private Router $router;
 
-	/** @var Request */
-	private $request;
+	private Request $request;
 
-	/** @var ControlRenderer */
-	private $controlRenderer;
+	private ?ControlRenderer $controlRenderer = null;
 
 	public function __construct(Container $context, IHttpRequest $httpRequest, Router $router)
 	{
@@ -58,21 +53,6 @@ final class MicroPresenter extends Component implements IPresenter
 	public function getRequest(): Request
 	{
 		return $this->request;
-	}
-
-	protected function getTemplateFactory(): TemplateFactory
-	{
-		return $this->getContext()->getByType(TemplateFactory::class);
-	}
-
-	protected function getControlRenderer(): ControlRenderer
-	{
-		if (!$this->controlRenderer) {
-			$this->controlRenderer = $this->getContext()->getByType(ControlRenderer::class);
-			$this->controlRenderer->setParent($this);
-		}
-
-		return $this->controlRenderer;
 	}
 
 	public function run(Request $request): Response
@@ -162,10 +142,24 @@ final class MicroPresenter extends Component implements IPresenter
 		return new RedirectResponse($url, $httpCode);
 	}
 
-
 	public function error(string $message = '', int $httpCode = IHttpResponse::S404_NOT_FOUND): void
 	{
 		throw new BadRequestException($message, $httpCode);
+	}
+
+	protected function getTemplateFactory(): TemplateFactory
+	{
+		return $this->getContext()->getByType(TemplateFactory::class);
+	}
+
+	protected function getControlRenderer(): ControlRenderer
+	{
+		if ($this->controlRenderer === null) {
+			$this->controlRenderer = $this->getContext()->getByType(ControlRenderer::class);
+			$this->controlRenderer->setParent($this);
+		}
+
+		return $this->controlRenderer;
 	}
 
 }
