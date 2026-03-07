@@ -2,7 +2,7 @@
 
 <p align=center>
   <a href="https://github.com/contributte/micro-skeleton/actions"><img src="https://badgen.net/github/checks/contributte/micro-skeleton/master"></a>
-  <a href="https://coveralls.io/r/contributte/micro-skeleton"><img src="https://badgen.net/coveralls/c/github/contributte/micro-skeleton"></a>
+  <a href="https://codecov.io/gh/contributte/micro-skeleton"><img src="https://badgen.net/codecov/c/github/contributte/micro-skeleton"></a>
   <a href="https://packagist.org/packages/contributte/micro-skeleton"><img src="https://badgen.net/packagist/dm/contributte/micro-skeleton"></a>
   <a href="https://packagist.org/packages/contributte/micro-skeleton"><img src="https://badgen.net/packagist/v/contributte/micro-skeleton"></a>
 </p>
